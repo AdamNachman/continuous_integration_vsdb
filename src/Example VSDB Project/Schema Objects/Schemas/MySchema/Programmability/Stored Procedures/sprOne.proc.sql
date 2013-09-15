@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [MySchema].[sprOne]
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT * FROM dbo.fncTwo();
+END;

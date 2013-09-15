@@ -1,0 +1,1 @@
+﻿CREATE ROLE [DatabaseRoleWithOwnerNoWhitespace]AUTHORIZATION [MySchema];

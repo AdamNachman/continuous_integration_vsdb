@@ -1,0 +1,2 @@
+EXEC spGenerateMergeData @tablename='TableOne',@merge=1
+EXEC spGenerateMergeData @tablename='TableTwo',@merge=0,@from='FROM TableTwo t2 WHERE t2.Col1 IN (SELECT Col1 FROM TableOne)'

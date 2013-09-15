@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[TableTwo]
+    ADD CONSTRAINT [FK_TableTwo_TableOne] FOREIGN KEY ([Col2]) REFERENCES [dbo].[TableOne] ([Col1]) ON DELETE CASCADE ON UPDATE CASCADE;
+

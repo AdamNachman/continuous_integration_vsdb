@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5A04AC53-D0A8-419C-BB9D-EA73E8120446}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdamNachman.Build.SqlExtract</RootNamespace>
+    <AssemblyName>AdamNachman.Build.SqlExtract</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>Migrated rules for SQLExtract.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract Classes\BaseDBObject.cs" />
+    <Compile Include="Abstract Classes\BaseTable.cs" />
+    <Compile Include="Abstract Classes\GenericProcessDatabase.cs" />
+    <Compile Include="Database Object Classes\CLRAssembly.cs" />
+    <Compile Include="Database Object Classes\PartitionScheme.cs" />
+    <Compile Include="Database Object Classes\FullTextCatalog.cs" />
+    <Compile Include="Database Object Classes\FullTextIndex.cs" />
+    <Compile Include="Database Object Classes\PartitionFunction.cs" />
+    <Compile Include="Database Object Classes\DatabaseSynonym.cs" />
+    <Compile Include="Enums\SqlFileTypes.cs" />
+    <Compile Include="Interfaces\IExistenceChecker.cs" />
+    <Compile Include="Parsers\Matcher.cs" />
+    <Compile Include="Parsers\ScriptMatcher.cs" />
+    <Compile Include="Processes\ProcessSynonyms.cs" />
+    <Compile Include="Processes\ProcessClrAssemblies.cs" />
+    <Compile Include="Processes\ProcessPartitionScheme.cs" />
+    <Compile Include="Processes\ProcessPartitionFunctions.cs" />
+    <Compile Include="Utility Classes\AssembliesToExtract.cs" />
+    <Compile Include="Utility Classes\ExistenceCheckers\ExistenceCheckerDefault.cs" />
+    <Compile Include="Utility Classes\ExistenceCheckers\ManifestExistenceChecker.cs" />
+    <Compile Include="Utility Classes\ExistenceCheckers\SchemaExistenceChecker.cs" />
+    <Compile Include="Utility Classes\AssemblyToExtract.cs" />
+    <Compile Include="Utility Classes\ParseResult.cs" />
+    <Compile Include="Utility Classes\PermissionMap.cs" />
+    <Compile Include="Utility Classes\PermissionPattern.cs" />
+    <Compile Include="Database Object Classes\Service.cs" />
+    <Compile Include="Database Object Classes\BrokerQueue.cs" />
+    <Compile Include="Database Object Classes\Contract.cs" />
+    <Compile Include="Database Object Classes\Message.cs" />
+    <Compile Include="Database Object Classes\Route.cs" />
+    <Compile Include="Database Object Classes\DefaultConstraint.cs" />
+    <Compile Include="Database Object Classes\DatabaseSchema.cs" />
+    <Compile Include="Database Object Classes\Role.cs" />
+    <Compile Include="Database Object Classes\Filegroup.cs" />
+    <Compile Include="Processes\ProcessFullTextCatalogs.cs" />
+    <Compile Include="Processes\ProcessContracts.cs" />
+    <Compile Include="Processes\ProcessFullTextIndexes.cs" />
+    <Compile Include="Processes\ProcessServices.cs" />
+    <Compile Include="Processes\ProcessRoutes.cs" />
+    <Compile Include="Processes\ProcessQueues.cs" />
+    <Compile Include="Processes\ProcessMessages.cs" />
+    <Compile Include="Processes\ProcessRoles.cs" />
+    <Compile Include="Processes\ProcessSchema.cs" />
+    <Compile Include="Processes\ProcessFilegroups.cs" />
+    <Compile Include="SystemConstants.cs" />
+    <Compile Include="SQLExtract.cs" />
+    <Compile Include="Database Object Classes\CheckConstraint.cs" />
+    <Compile Include="Abstract Classes\BaseConstraint.cs" />
+    <Compile Include="Database Object Classes\ForeignKey.cs" />
+    <Compile Include="Database Object Classes\Function.cs" />
+    <Compile Include="Database Object Classes\Index.cs" />
+    <Compile Include="Database Object Classes\ClusteredConstraint.cs" />
+    <Compile Include="Database Object Classes\PrimaryKey.cs" />
+    <Compile Include="Database Object Classes\StoredProcedure.cs" />
+    <Compile Include="Database Object Classes\Table.cs" />
+    <Compile Include="Database Object Classes\Trigger.cs" />
+    <Compile Include="Database Object Classes\UniqueConstraint.cs" />
+    <Compile Include="Database Object Classes\View.cs" />
+    <Compile Include="Interfaces\IDBObject.cs" />
+    <Compile Include="Processes\ProcessCircular.cs" />
+    <Compile Include="Processes\ProcessClusteredConstraints.cs" />
+    <Compile Include="Processes\ProcessConstraints.cs" />
+    <Compile Include="Abstract Classes\ProcessDatabase.cs" />
+    <Compile Include="Processes\ProcessFunctions.cs" />
+    <Compile Include="Processes\ProcessProcedures.cs" />
+    <Compile Include="Processes\ProcessTables.cs" />
+    <Compile Include="Processes\ProcessTriggers.cs" />
+    <Compile Include="Processes\ProcessViews.cs" />
+    <Compile Include="Utility Classes\Utilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CreateMergeProc.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CleanupMergeProc.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CreatePermissionsProc.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CleanupPermissionsProc.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{0D711386-BDAF-4BFD-902D-10210B7D4F97}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

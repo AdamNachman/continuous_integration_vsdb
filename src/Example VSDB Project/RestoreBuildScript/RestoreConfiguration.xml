@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScriptExecutorConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ExecutionSequence>
+    <Item>
+      <Key>
+        <int>10</int>
+      </Key>
+      <Value>
+        <string>RestoreBuildScript\Restore.sql</string>
+      </Value>
+    </Item>
+  </ExecutionSequence>
+  <TargetDatabase>master</TargetDatabase>
+  <TargetServer></TargetServer>
+</ScriptExecutorConfiguration>

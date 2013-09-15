@@ -1,0 +1,2 @@
+﻿ALTER TABLE [MySchema].TableOne
+    ADD CONSTRAINT ForeignKeyUnbracketedName FOREIGN KEY ([Col2]) REFERENCES [dbo].[TableOne] ([Col1]) ON DELETE CASCADE ON UPDATE CASCADE;

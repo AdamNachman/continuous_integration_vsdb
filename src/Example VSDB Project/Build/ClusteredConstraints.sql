@@ -1,0 +1,52 @@
+SET NOCOUNT ON
+
+EXEC sp_addmessage @msgnum = 100000, @severity =  1, @msgtext = 'Number of objects == |4|', @lang = 'us_english', @replace = 'REPLACE'
+EXEC sp_addmessage @msgnum = 100010, @severity =  1, @msgtext = 'Processed object |%d| of 4', @lang = 'us_english', @replace = 'REPLACE'
+GO
+RAISERROR (100000, 1, 1)
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS(SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[MySchema].[TableSix]') AND name = N'PK_TableSix')
+BEGIN
+ALTER TABLE [MySchema].[TableSix]
+	ADD CONSTRAINT [PK_TableSix]
+	PRIMARY KEY CLUSTERED ([Col1])
+END
+GO
+RAISERROR (100010, 1, 1, 1)
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS(SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[TableOne]') AND name = N'PK_TableOne')
+BEGIN
+ALTER TABLE [dbo].[TableOne]
+    ADD CONSTRAINT [PK_TableOne] PRIMARY KEY CLUSTERED ([Col1] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+END
+GO
+RAISERROR (100010, 1, 1, 2)
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS(SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[TableThree]') AND name = N'PK_TableThree')
+BEGIN
+ALTER TABLE [dbo].[TableThree]
+    ADD CONSTRAINT [PK_TableThree] PRIMARY KEY CLUSTERED ([Col1] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+END
+GO
+RAISERROR (100010, 1, 1, 3)
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS(SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[TableTwo]') AND name = N'PK_TableTwo')
+BEGIN
+ALTER TABLE [dbo].[TableTwo]
+    ADD CONSTRAINT [PK_TableTwo] PRIMARY KEY CLUSTERED ([Col1] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+END
+GO
+RAISERROR (100010, 1, 1, 4)
+GO

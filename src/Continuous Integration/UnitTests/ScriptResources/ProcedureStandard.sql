@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE  [dbo].[ProcedureStandard]
+AS
+BEGIN
+	SELECT 1
+END

@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [ProcedureNoSchema]
+AS
+BEGIN
+	SELECT 1
+END

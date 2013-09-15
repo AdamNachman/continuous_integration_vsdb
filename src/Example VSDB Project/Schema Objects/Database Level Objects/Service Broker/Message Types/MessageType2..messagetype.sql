@@ -1,0 +1,2 @@
+﻿CREATE MESSAGE TYPE [MessageType2]
+	VALIDATION = NONE;

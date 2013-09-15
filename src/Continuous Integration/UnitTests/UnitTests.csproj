@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{231F1270-EB1A-4CC6-ACF6-8BDA131D5112}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UnitTests</RootNamespace>
+    <AssemblyName>UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SQLExtractParserTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlExtract\SQLExtract.csproj">
+      <Project>{5A04AC53-D0A8-419C-BB9D-EA73E8120446}</Project>
+      <Name>SQLExtract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\TableNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\RouteStandard.sql" />
+    <EmbeddedResource Include="ScriptResources\ContractStandard.sql" />
+    <EmbeddedResource Include="ScriptResources\DefaultConstrantDifferentSchema.sql" />
+    <EmbeddedResource Include="ScriptResources\DefaultConstrantUbracketedName.sql" />
+    <EmbeddedResource Include="ScriptResources\IX_TableFour_Col2_a.index.sql" />
+    <EmbeddedResource Include="ScriptResources\IX_TableFour_Col2_b.index.sql" />
+    <EmbeddedResource Include="ScriptResources\IX_TableFour_Col2_c.index.sql" />
+    <EmbeddedResource Include="ScriptResources\IX_TableThree_Col3_Col4_a.index.sql" />
+    <EmbeddedResource Include="ScriptResources\IX_TableThree_Col3_Col4_b.index.sql" />
+    <EmbeddedResource Include="ScriptResources\MessageTypeStandard.sql" />
+    <EmbeddedResource Include="ScriptResources\MessageTypeXMLName.sql" />
+    <EmbeddedResource Include="ScriptResources\DatabaseRoleStandard.sql" />
+    <EmbeddedResource Include="ScriptResources\DatabaseRoleWithOwner.sql" />
+    <EmbeddedResource Include="ScriptResources\SchemaWithOwner.sql" />
+    <EmbeddedResource Include="ScriptResources\PrimaryKeyDifferentSchema.sql" />
+    <EmbeddedResource Include="ScriptResources\PrimaryKeyUnbracketedSchema.sql" />
+    <EmbeddedResource Include="ScriptResources\PrimaryKeyUnbracketedName.sql" />
+    <EmbeddedResource Include="ScriptResources\PrimaryKeyStandard.sql" />
+    <EmbeddedResource Include="ScriptResources\PrimaryKeyNoSchema.sql" />
+    <EmbeddedResource Include="ScriptResources\QueueStandard.sql" />
+    <EmbeddedResource Include="ScriptResources\SampleDBSource.sqlfile.sql" />
+    <EmbeddedResource Include="ScriptResources\SampleDBSource_log.sqlfile.sql" />
+    <EmbeddedResource Include="ScriptResources\ServiceStandard.sql" />
+    <EmbeddedResource Include="ScriptResources\TableDifferentSchema.sql" />
+    <EmbeddedResource Include="ScriptResources\TableStandard.sql" />
+    <EmbeddedResource Include="ScriptResources\TableCommentPrefix.sql" />
+    <EmbeddedResource Include="ScriptResources\TableUnBracketedName.sql" />
+    <EmbeddedResource Include="ScriptResources\TableUnBracketedSchema.sql" />
+    <EmbeddedResource Include="ScriptResources\UniqueConstraintDiffSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ViewCommentPrefix.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ViewUnBracketedSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ViewDifferentSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ViewNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ViewStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ViewUnBracketedName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FunctionCommentPrefix.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FunctionUnBracketedSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FunctionDifferentSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FunctionNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FunctionStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FunctionUnBracketedName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FunctionTableValueOnDiffSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\UniqueConstraintDboSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\UniqueConstraintNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ProcedureCommentPrefix.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ProcedureUnBracketedSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ProcedureDifferentSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ProcedureNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ProcedureStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ProcedureUnBracketedName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ProcedureShortTypeName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\SchemaStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\RouteWithOwner.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\DefaultConstrantStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\DefaultConstrantNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\DefaultConstrantUbracketedSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ForeignKeyStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ForeignKeyNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ForeignKeyDifferentSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ForeignKeyUnbracketedName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ForeignKeyUnbracketedSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\CheckConstraintNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\CheckConstraintStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\CheckConstraintDifferentSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\CheckConstraintUnbracketedName.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\CheckConstraintUnbracketedSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ServiceWithOwner.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ContractWithOwner.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\DatabaseRoleWithOwnerNoWhitespace.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FileGroup.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FulltextCatalogStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FulltextIndexStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\PartitionSchemeStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\PartitionFunctionStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\TriggerSchemaStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\TriggerSchemaOnTable.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\TriggerNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\TriggerSchemaOnTrigger.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\AssemblyWithOwner.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\AssemblyStandard.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\SynonymOnDbo.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\SynonymOnNoSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\SynonymDifferentSchema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FileGroupWithSpaces.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\PartitionFunctionWithSpaces.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FunctionWithSpaces.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\PartitionFunctionUnbracketed.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\ProcedureWithSpaces.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FileGroupUnbracketed.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ScriptResources\FileGroupWithUnderscores.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

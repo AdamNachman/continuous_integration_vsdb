@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionPattern>
+  <PermissionMaps>
+    <PermissionMap>
+      <PrincipalName>MyDatabaseRole</PrincipalName>
+      <GrantType>EXECUTE</GrantType>
+      <ObjectTypes>P,FN</ObjectTypes>
+    </PermissionMap>
+    <PermissionMap>
+      <PrincipalName>MyDatabaseRole</PrincipalName>
+      <GrantType>SELECT</GrantType>
+      <ObjectTypes>TF,V</ObjectTypes>
+    </PermissionMap>
+    <PermissionMap>
+      <PrincipalName>MyOtherDatabaseRole</PrincipalName>
+      <GrantType>SELECT,UPDATE,INSERT,DELETE</GrantType>
+      <SchemaName>MySchema</SchemaName>
+      <ObjectTypes>U</ObjectTypes>
+    </PermissionMap>
+  </PermissionMaps>
+</PermissionPattern>

@@ -1,0 +1,3 @@
+﻿ALTER TABLE [MySchema].[MyTable]
+    ADD CONSTRAINT [TheName]
+    UNIQUE NONCLUSTERED (Col1)

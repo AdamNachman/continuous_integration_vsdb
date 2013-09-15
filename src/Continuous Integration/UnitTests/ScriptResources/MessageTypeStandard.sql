@@ -1,0 +1,3 @@
+﻿CREATE MESSAGE TYPE [MessageTypeStandard]
+	AUTHORIZATION [MySchema]
+	VALIDATION = NONE;

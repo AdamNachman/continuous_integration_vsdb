@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScriptExecutorConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!--
+    The ScriptExecutorConfiguration file is simply a serialized SqlDeployment.ScriptExecutorConfiguration class.
+    This contains a serializable dictionary that represents the script execution sequence for the deployment utility (SqlDeployment.ScriptExecutor),
+    which is currently called by the MSBuild task DeployDatabase, as well as the production deployment utility SqlDeployment.DatabaseDeployment
+
+    This is used to be provide a more granular level of control over the database deployment process. Custom scripts can be inserted
+    in the execution sequence. For example, the custom (not generated) script AlterTables.sql handles upgrading tables between database
+    versions. This has been manually added to the exection sequence script to run directly after the Tables.sql file, which creates
+    tables that are missing.
+
+    Features to add in the future would be the addition of a build version after the msbuild process completes, and putting logic
+    in the custom scripts to interrogate database versions before execution (or data migration).
+  -->
+    <ExecutionSequence>
+        <Item>
+            <Key>
+                <!--
+          The sequence number. The order in the config file doesn't actually matter, since this is sorted by the key value at run time.
+          it is, however, important that the key is UNIQUE, since it is the key of a dictionary object.
+        -->
+                <int>1</int>
+            </Key>
+            <Value>
+                <!--
+          The name (and relative path) of the script to execute. This is relative to the calling application, so in the case of
+          the DatabaseDeployment utility it is relative to the application folder, whereas when called from MSBuild it should
+          be relative to the project root.
+          See the PhoneDemoDatabase.targets file for more information on how the variables are defined.
+        -->
+                <string>Build\Filegroups.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>2</int>
+            </Key>
+            <Value>
+                <string>Build\FullTextCatalogs.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>3</int>
+            </Key>
+            <Value>
+                <string>Build\DropConstraints.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>4</int>
+            </Key>
+            <Value>
+                <string>Build\DropRedundantObjects.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>5</int>
+            </Key>
+            <Value>
+                <string>Build\DropSynonyms.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>10</int>
+            </Key>
+            <Value>
+                <string>Build\DropFunctions.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>20</int>
+            </Key>
+            <Value>
+                <string>Build\DropViews.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>22</int>
+            </Key>
+            <Value>
+                <string>Build\Assemblies.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>25</int>
+            </Key>
+            <Value>
+                <string>Build\Roles.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>30</int>
+            </Key>
+            <Value>
+                <string>Build\Schemas.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>40</int>
+            </Key>
+            <Value>
+                <string>Build\Tables.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>45</int>
+            </Key>
+            <Value>
+                <string>Build\AlterTables.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>50</int>
+            </Key>
+            <Value>
+                <string>Build\Functions.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>60</int>
+            </Key>
+            <Value>
+                <string>Build\Views.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>70</int>
+            </Key>
+            <Value>
+                <string>Build\Triggers.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>80</int>
+            </Key>
+            <Value>
+                <string>Build\CircularReferences.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>90</int>
+            </Key>
+            <Value>
+                <string>Build\ClusteredConstraints.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>100</int>
+            </Key>
+            <Value>
+                <string>Build\Constraints.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>105</int>
+            </Key>
+            <Value>
+                <string>Build\FullTextIndexes.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>110</int>
+            </Key>
+            <Value>
+                <string>Build\Procedures.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>111</int>
+            </Key>
+            <Value>
+                <string>Build\Synonyms.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>114</int>
+            </Key>
+            <Value>
+                <string>Build\ManipulateDataPostApply.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>118</int>
+            </Key>
+            <Value>
+                <string>Build\LoadReferenceData.sql</string>
+            </Value>
+        </Item>
+        <Item>
+            <Key>
+                <int>120</int>
+            </Key>
+            <Value>
+                <string>Build\RolePermissions.sql</string>
+            </Value>
+        </Item>
+    </ExecutionSequence>
+    <!--
+    The name of the target database. This allows you to specify a database name on a server, and restrict the script execution
+    from running against any other database.
+  -->
+    <TargetDatabase>SampleDB</TargetDatabase>
+    <!--
+    The name of the target server. This allows you to specify a server, and restrict the script execution
+    from running against any other server. NOTE: .\SQLExpress would not be valid, since the actual server name would be resolved
+    as MACHINENAME\SQLExpress. the .\ prefix is a shortcut, and the comparison would be on MACHINENAME\SQLExpress != .\SQLExpress,
+    which would fail.
+  -->
+    <TargetServer></TargetServer>
+</ScriptExecutorConfiguration>

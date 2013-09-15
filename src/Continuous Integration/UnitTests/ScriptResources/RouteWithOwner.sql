@@ -1,0 +1,3 @@
+﻿CREATE ROUTE [RouteWithOwner]
+    AUTHORIZATION [MySchema]
+    WITH ADDRESS = N'LOCAL';

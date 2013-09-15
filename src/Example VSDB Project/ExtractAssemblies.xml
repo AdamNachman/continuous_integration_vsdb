@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssembliesToExtract>
+  <ConfiguredAssemblies>
+    <AssemblyToExtract>
+      <Name>AdamNachman.SqlClr</Name>
+      <FilePath>SqClr\bin\Release\AdamNachman.SqClr.dll</FilePath>
+      <Authorization>dbo</Authorization>
+      <TargetPath>Schema Objects\Database Level Objects\Assemblies\AdamNachman.SqlClr.assembly.sql</TargetPath>
+      <PermissionSet>SAFE</PermissionSet>
+    </AssemblyToExtract>
+  </ConfiguredAssemblies>
+</AssembliesToExtract>

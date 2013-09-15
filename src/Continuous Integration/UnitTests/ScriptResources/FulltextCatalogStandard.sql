@@ -1,0 +1,3 @@
+﻿CREATE 
+	FULLTEXT 
+	CATALOG [FulltextCatalogStandard];

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- An example of how to execute this from the command line would be: MSBuild SampleDB.dbproj /target:DeployDatabase
+      Since DeployDatabase depends on SQLExtract, both tasks will be executed.
+  -->
+  <UsingTask TaskName="DeployDatabase" AssemblyFile="lib\SqlDeployment.Build.dll" />
+  <UsingTask TaskName="SQLExtract" AssemblyFile="lib\SqlDeployment.Build.dll" />
+  <UsingTask TaskName="SqlScriptExecutor" AssemblyFile="lib\SqlDeployment.Build.dll" />
+  <!--
+    You probably want to reference a common drop point on a build server, instead of a path relative reference
+  -->
+
+  <!--
+    This item is an enumeration of all "custom" files in the build from the dbpro project that should be
+    included in the build output. Note that to include multiple files, simply use a semi-colon delimiter.
+    The ScriptExecutorConfiguration.xml file is the config used by the database deployment task - it is a serialized dictionary
+    that is sorted to execute in sequence.
+  -->
+  <ItemGroup>
+    <CustomDeployment
+        Include="$(MSBuildProjectDirectory)\Scripts\CustomDeployment\*.sql;$(MSBuildProjectDirectory)\Scripts\CustomDeployment\ScriptExecutorConfiguration.xml"
+        Exclude="*.sqlfile;*.sqlpermissions"
+        />
+
+    <!--
+      This item is an enumeration of ALL project files in the build from the dbpro project that should be included in the build
+      Note that *.sql includes files such as .sqlfile and .sqlpermissions, so we exclude them if they exist. 
+    -->
+    <SchemaScripts
+      Include="@(Build->'%(FullPath)')"
+      Exclude="*.sqlfile;*.sqlpermissions"
+        />
+  </ItemGroup>
+  <!--
+      SqlScriptExecutor - execute any ddl against a target database. This one is used to restore a target image prior to build execution
+        SqlInstance - required. The SQLInstance against which the scripts will be executed
+        SqlUsername - The sql username to use when connecting to the instance. Leave blank to use windows authentication.
+        SqlPassword - The password to use with the build account
+        DatabaseName - required. The database name against which the scripts will be executed
+        ConfigPath - required. The path where the config file for the .sql scripts is to be found.
+    -->
+  <Target Name="RestoreDatabase">
+    <SqlScriptExecutor
+      SqlInstance=".\SQLEXPRESS"
+      SqlUsername = "BuildServiceUser"
+      SqlPassword = "BuildServicePassword"
+      DatabaseName="master"
+      ConfigPath="RestoreBuildScript\RestoreConfiguration.xml"
+    />
+  </Target>
+  <!--
+      Database deployment - test a deployment against your daily refresh from production
+        SqlInstance - required. The SQLInstance to which the scripts will be deployed
+        SqlUsername - The sql username to use when connecting to the instance. Leave blank to use windows authentication.
+        SqlPassword - The password to use with the build account
+        DatabaseName - required. The database name to which the scripts will be deployed
+        ConfigPath - required. The path where the config file for the extracted .sql scripts is to be found.
+        OutputCompoundFile - indicates whether or not a single output file should be generated
+        OutputCompoundFilePath  - the path of the output file
+    -->
+  <Target Name="DeployDatabase" DependsOnTargets="TheExtract">
+    <DeployDatabase
+      SqlInstance=".\SQLEXPRESS"
+      SqlUsername = ""
+      SqlPassword = ""
+      DatabaseName="SampleDB"
+      ConfigPath="Build\ScriptExecutorConfiguration.xml"
+      OutputCompoundFile="1"
+      PrependUsingDatabaseName="1"
+      OutputCompoundFilePath="Build\SampleDB.sql"
+    />
+  </Target>
+
+  <!--
+      SQL Extract - predictably extracts .sql files from a dbproject
+        SqlInstance - required. The SQLInstance against which the scripts will be tested to assist in determining dependancies
+        SqlUsername - The sql username to use when connecting to the instance. Leave blank to use windows authentication.
+        SqlPassword - The password to use with the build account
+        ProjectGUID - required. The GUID of the db project. Will be included in the test database build name.
+        BuildPath - required. The path where the output .sql files will be deployed.
+        SchemaScripts - required. The path (and files) for extraction
+        StaticFiles - required. The path where the custom files reside.
+        SplitDropToSeperateFile - required. Indicates whether or not multiple "object typed" files are cresated. Currently only the value of "1" is supported.
+        ExtractData - Indicates whether or not reference data should be extracted from a source database
+        ExtractFromServer - The name of the server from which the source data should be extracted
+        ExtractUsername - The sql username to use when connecting to the instance for extracting reference data. Leave blank to use windows authentication.
+        ExtractPassword - The password to use with the build account
+        ExtractFromDatabase - The name of the database from which the source data should be extracted
+        ExtractTargetFile - The file where the extracted data should be saved
+        ExtractCommandsFile - The SQL Commands (spGenerateMerge) used for the extract
+        ScriptPermissions - Indicates whether or not to script permissions for this database
+        PermissionsTemplate - The template - (a serialized "Permissions Map" class - to be used for permission generation
+        PermissionsTargetFile - The target file where the scripted permissions will be written
+        AlterIfExists - If deploying against a known baseline, this will load up the provider defined in ExistenceCheckerProvider and for StoredProcedures, Functions and Views will NOT generate a drop statement, but will only generate an ALTER.
+        ExistenceCheckerProvider - The provider to use to check if an object exists. Can use a file manifest (AdamNachman.Build.SqlExtract.ManifestExistenceChecker, AdamNachman.Build.SqlExtract) - a list of objects in a single file, or can check the schema of an existing database (AdamNachman.Build.SqlExtract.SchemaExistenceChecker, AdamNachman.Build.SqlExtract). 
+                                   If in file, the format is [schema].[objectname], with one item per line
+        ExistenceCheckerConfiguration - The configuration for the ExistenceCheckerProvider - the ManifestExistenceChecker expects a file path, the SchemaExistenceChecker a connection string. If a connection string, ensure that the semi-colons are replaced with %3B
+    -->
+  <Target Name="TheExtract">
+    <SQLExtract
+      SqlInstance               = ".\SQLEXPRESS"
+      SqlUsername               = ""
+      SqlPassword               = ""
+      ProjectGUID               = "$(ProjectGuid)"
+      BuildPath                 = "Build"
+      SchemaScripts             = "@(Build->'%(FullPath)')"
+      StaticFiles               = "@(CustomDeployment)"
+      SplitDropToSeperateFile   = "0"
+      ExtractData               = "0"
+      ExtractFromServer         = ".\SQLEXPRESS"
+      ExtractUsername           = ""
+      ExtractPassword           = ""
+      ExtractFromDatabase       = "SampleDBSource"
+      ExtractTargetFile         = "$(MSBuildProjectDirectory)\Scripts\CustomDeployment\LoadReferenceData.sql"
+      ExtractCommandsFile       = "$(MSBuildProjectDirectory)\ExtractCommands.txt"
+      ScriptPermissions         = "1"
+      GenerateDropForSynonyms   = "1"
+      GenerateDropsForDefaultConstraints   = "0"
+      PermissionsTemplate       = "$(MSBuildProjectDirectory)\PermissionsTemplate.xml"
+      PermissionsTargetFile     = "$(MSBuildProjectDirectory)\Scripts\CustomDeployment\RolePermissions.sql"
+      AlterIfExists             = "0"
+      ExistenceCheckerProvider     = "AdamNachman.Build.SqlExtract.ManifestExistenceChecker, AdamNachman.Build.SqlExtract"
+      ExistenceCheckerConfiguration  = "Build\ObjectManifest.txt"
+      TreatWarningsAsErrors     = "1"
+      WarnOnUnmatchedTypes      = "1"
+      ExtractAssemblies         = "0"
+      ExtractAssembliesConfig   = "$(MSBuildProjectDirectory)\ExtractAssemblies.xml"
+    />
+  </Target>
+
+  </Project>

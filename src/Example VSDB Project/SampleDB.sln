@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SampleDB", "SampleDB.dbproj", "{FA1F3E0C-6CF7-4DA9-90E3-3074EAD25A38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlClr", "SqClr\SqlClr.csproj", "{3F672E10-484D-46AA-9042-9000F9A70785}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA1F3E0C-6CF7-4DA9-90E3-3074EAD25A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA1F3E0C-6CF7-4DA9-90E3-3074EAD25A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA1F3E0C-6CF7-4DA9-90E3-3074EAD25A38}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FA1F3E0C-6CF7-4DA9-90E3-3074EAD25A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA1F3E0C-6CF7-4DA9-90E3-3074EAD25A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA1F3E0C-6CF7-4DA9-90E3-3074EAD25A38}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3F672E10-484D-46AA-9042-9000F9A70785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F672E10-484D-46AA-9042-9000F9A70785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F672E10-484D-46AA-9042-9000F9A70785}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3F672E10-484D-46AA-9042-9000F9A70785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F672E10-484D-46AA-9042-9000F9A70785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F672E10-484D-46AA-9042-9000F9A70785}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

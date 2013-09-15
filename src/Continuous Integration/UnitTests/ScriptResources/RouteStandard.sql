@@ -1,0 +1,2 @@
+﻿CREATE ROUTE [RouteStandard]
+    WITH ADDRESS = N'LOCAL';

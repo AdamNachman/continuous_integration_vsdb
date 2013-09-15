@@ -1,0 +1,3 @@
+﻿ALTER TABLE [MyTable]
+    ADD CONSTRAINT [TheName]
+    UNIQUE CLUSTERED (Col1)
